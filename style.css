@@ -45,6 +45,7 @@ button:hover {
   background-color: inherit;
   font-size: 25px;
 }
+
 #result {
   font-size: xx-large;
   text-align: right;
@@ -53,7 +54,6 @@ button:hover {
   outline: solid 2px rgb(207, 191, 243);
 }
 .container {
-  margin-top: 20px;
   max-width: 500px;
 
   border: solid 2px lightgray;
@@ -66,5 +66,5 @@ input {
   border-radius: 10px;
 }
 .row {
-  margin: 20px;
+  margin: 10px;
 }

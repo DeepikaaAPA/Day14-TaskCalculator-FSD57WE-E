@@ -21,10 +21,12 @@
   </head>
   <body>
     <div class="container">
-    <h1 id="title" class="row px-2 text-success">Calculator</h1>
-    <p id="description" class="row px-2 text-primary text-muted" >This is a basic calculator.</p>
+      <h1 id="title" class="pt-2 px-4 text-success">Calculator</h1>
+      <p id="description" class="ps-4 text-primary text-muted">
+        This is a basic calculator.
+      </p>
       <div class="row">
-        <input type="text" readonly id="query"></label>
+        <label tabindex="-1" id="query"> &nbsp;</label>
       </div>
       <div class="row p-2">
         <input class="form-control" type="text" id="result" placeholder="0" />
@@ -35,7 +37,7 @@
           <button id="backspace"><i class="fas fa-backspace"></i></button>
         </div>
         <div class="col"><button id="dot">.</button></div>
-        <div class="col "><button id="multiply" class="operator">*</button></div>
+        <div class="col"><button id="multiply" class="operator">*</button></div>
       </div>
       <div class="row">
         <div class="col"><button id="seven">7</button></div>
@@ -43,7 +45,7 @@
           <button id="eight">8</button>
         </div>
         <div class="col"><button id="nine">9</button></div>
-        <div class="col "><button id="divide" class="operator">/</button></div>
+        <div class="col"><button id="divide" class="operator">/</button></div>
       </div>
       <div class="row">
         <div class="col"><button id="four">4</button></div>
@@ -51,17 +53,17 @@
           <button id="five">5</button>
         </div>
         <div class="col"><button id="six">6</button></div>
-        <div class="col "><button id="subtract" class="operator">-</button></div>
+        <div class="col"><button id="subtract" class="operator">-</button></div>
       </div>
       <div class="row">
         <div class="col"><button id="1">1</button></div>
         <div class="col">
           <button id="2">2</button>
         </div>
-        <div class="col "><button id="3">3</button></div>
-        <div class="col "><button id="add" class="operator">+</button></div>
+        <div class="col"><button id="3">3</button></div>
+        <div class="col"><button id="add" class="operator">+</button></div>
       </div>
-      <div class="row pb-5">
+      <div class="row pb-3">
         <div class="col"><button id="zero">0</button></div>
         <div class="col">
           <button id="double0">00</button>
@@ -71,7 +73,6 @@
     </div>
 
     <script src="script.js"></script>
-    <script src="https://app.zenclass.in/sheets/v1/js/zen/suite/bundle.js">
-      </script>
+    <script src="https://app.zenclass.in/sheets/v1/js/zen/suite/bundle.js"></script>
   </body>
 </html>

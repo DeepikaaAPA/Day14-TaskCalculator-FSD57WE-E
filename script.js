@@ -3,7 +3,7 @@ clear.addEventListener("click", () => {
   result.value = "";
   answer = undefined;
   stack = [];
-  query.value = "";
+  query.innerText = " ";
 });
 
 let backspace = document.getElementById("backspace");
@@ -55,8 +55,8 @@ function onClickOperator(symbol) {
 
   stack.push(result.value, symbol);
 
-  query.value = stack.join("");
-  console.log(...stack, "query = ", query.value);
+  query.innerText = stack.join("");
+  console.log(...stack, "query = ", query.innerText);
   result.value = "";
 }
 
@@ -76,7 +76,7 @@ function onClickEquals() {
   );
   answer = evaluate(operand1, operator, operand2);
   stack.push(answer);
-  query.value = operand1 + operator + operand2;
+  query.innerText = operand1 + operator + operand2;
   result.value = answer;
 }
 
