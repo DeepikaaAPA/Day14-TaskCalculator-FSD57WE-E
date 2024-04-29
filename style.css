@@ -1,0 +1,70 @@
+button {
+  width: 100%;
+  border: none;
+  border-radius: 15px;
+  font-weight: bold;
+  min-height: 55px;
+  color: rgb(105, 103, 103);
+  background-color: rgb(253, 253, 243);
+  font-size: larger;
+}
+
+button:hover {
+  background-color: rgb(230, 225, 230);
+}
+
+#clear {
+  color: rgb(187, 27, 27);
+  background-color: rgb(230, 139, 139);
+}
+#clear:hover {
+  background-color: rgb(232, 91, 91);
+}
+.operator {
+  font-size: xx-large;
+  font-weight: 500;
+  background-color: rgb(150, 223, 108);
+}
+
+.operator:hover {
+  background-color: rgb(101, 185, 53);
+}
+#equal {
+  font-size: xx-large;
+  font-weight: 500;
+  background-color: rgb(46, 152, 223);
+  border: none;
+  color: white;
+}
+#equal:hover {
+  background-color: rgb(6, 90, 145);
+}
+#query {
+  border: none;
+  text-align: end;
+  background-color: inherit;
+  font-size: 25px;
+}
+#result {
+  font-size: xx-large;
+  text-align: right;
+}
+#result:focus {
+  outline: solid 2px rgb(207, 191, 243);
+}
+.container {
+  margin-top: 20px;
+  max-width: 500px;
+
+  border: solid 2px lightgray;
+  border-radius: 15px;
+  background-color: rgb(173, 225, 245);
+}
+input {
+  padding: 5px;
+  border: none;
+  border-radius: 10px;
+}
+.row {
+  margin: 20px;
+}
