@@ -63,13 +63,7 @@ function onKeyPressed(event) {
   } else if (isOperator(event.key)) {
     onClickOperator(event.key);
   } else if (event.key === "Enter") {
-    onClickEquals();
-    // console.log(
-    //   "return form equals",
-    //   result.value,
-    //   query.innerText,
-    //   stack.join("")
-    // );
+    onClickEquals(true);
   } else if (event.key === "Backspace") {
     onClickBackspace();
   } else if (event.key === "Escape") {
@@ -91,30 +85,50 @@ function onClickNumber(number) {
 
 /**********for operators********************/
 function onClickOperator(symbol) {
-  console.log("operator enter ->", ...stack);
-  if (isOperator(stack[stack.length - 1])) {
-    stack.pop();
-  } else stack.push(result.value);
+  console.log("stack = >", stack);
+  // if (isOperator(stack[stack.length - 1])) {
+  //   stack.pop();
+  // } else stack.push(result.value);
+  // stack.push(symbol);
+  // query.innerText = stack[stack.length - 2] + symbol;
+  // result.value = "";
+  // // console.log("operator end ->", ...stack);
+  // if (isOperator(stack[stack.length - 1])) {
+  //   stack.pop();
+  //   console.log("stack = >", stack);
+  // } else {
+  stack.push(result.value);
+  console.log("stack = >", stack);
+  //}
+  onClickEquals(false);
+  console.log("stack = >", stack);
   stack.push(symbol);
-  query.innerText = stack[stack.length - 2] + symbol;
+  console.log("stack = >", stack);
+  query.innerText = stack.join("");
+  console.log("stack = >", stack);
   result.value = "";
-  console.log("operresult.value ator end ->", ...stack);
 }
 
 /************for Equals button ************/
 
-function onClickEquals() {
-  operand2 = result.value;
+function onClickEquals(flag) {
+  console.log("flag=", flag);
+  if (flag) {
+    stack.push(result.value);
+  }
+  console.log("in equals stack =>", ...stack);
+  operand2 = stack.pop();
   operator = stack.pop();
   operand1 = stack.pop();
   answer = evaluate(operand1, operator, operand2);
   stack.push(answer);
-  query.innerText = operand1 + operator + operand2;
-  result.value = answer;
+  if (flag) {
+    query.innerText = operand1 + operator + operand2;
+    result.value = answer;
+  }
 }
 
 function evaluate(operand1, operator, operand2) {
-  console.log(operand1, operand2, operator);
   switch (operator) {
     case "+":
       return +operand1 + +operand2;
@@ -126,6 +140,8 @@ function evaluate(operand1, operator, operand2) {
       return +operand1 / +operand2;
     case "%":
       return +operand1 % +operand2;
+    default:
+      return +operand2;
   }
 }
 
@@ -170,5 +186,5 @@ add.addEventListener("click", () => onClickOperator("+"));
 subtract.addEventListener("click", () => onClickOperator("-"));
 multiply.addEventListener("click", () => onClickOperator("*"));
 divide.addEventListener("click", () => onClickOperator("/"));
-equal.addEventListener("click", onClickEquals);
+equal.addEventListener("click", () => onClickEquals(true));
 modulo.addEventListener("click", () => onClickOperator("%"));
