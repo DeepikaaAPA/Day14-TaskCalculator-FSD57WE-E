@@ -54,8 +54,10 @@ function isOperator(key) {
   return key == "+" || key == "-" || key == "*" || key == "/";
 }
 function onKeyPressed(event) {
+  event.preventDefault();
   if ((event.key >= "0" && event.key <= "9") || event.key == ".") {
     //console.log("code=",event.code, "key",event.key);
+
     onClickNumber(event.key);
   } else if (isOperator(event.key)) {
     onClickOperator(event.key);

@@ -8,6 +8,12 @@ button {
   background-color: rgb(253, 253, 243);
   font-size: larger;
 }
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
 
 button:hover {
   background-color: rgb(230, 225, 230);
