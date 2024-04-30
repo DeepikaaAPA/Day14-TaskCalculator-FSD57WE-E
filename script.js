@@ -1,17 +1,10 @@
 let clear = document.getElementById("clear");
-clear.addEventListener("click", () => {
-  result.value = "";
-  answer = undefined;
-  stack = [];
-  query.innerText = " ";
-});
 
 let backspace = document.getElementById("backspace");
 
-backspace.addEventListener("click", () => {
-  let v = result.value;
-  result.value = v.substring(0, v.length - 1);
-});
+/*************getting the elements from the doc*****/
+
+let container = document.getElementById("container");
 
 let one = document.getElementById("1");
 let two = document.getElementById("2");
@@ -41,7 +34,52 @@ let operand1 = 0,
   stack = [],
   operator = "";
 
-/***** ******** Event listener functions*************** ******/
+/************* Event listener functions*********/
+
+/***********for key press evwnts *************/
+
+function onClickClear() {
+  result.value = "";
+  answer = undefined;
+  stack = [];
+  query.innerText = " ";
+}
+
+function onClickBackspace() {
+  let v = result.value;
+  result.value = v.substring(0, v.length - 1);
+}
+
+function isOperator(key) {
+  return key == "+" || key == "-" || key == "*" || key == "/";
+}
+function onKeyPressed(event) {
+  if ((event.key >= "0" && event.key <= "9") || event.key == ".") {
+    //console.log("code=",event.code, "key",event.key);
+    onClickNumber(event.key);
+  } else if (isOperator(event.key)) {
+    onClickOperator(event.key);
+  } else if (event.key === "Enter") {
+    onClickEquals();
+    console.log(
+      "return form equals",
+      result.value,
+      query.innerText,
+      stack.join("")
+    );
+  } else if (event.key === "Backspace") {
+    onClickBackspace();
+  } else if (event.key === "Escape") {
+    onClickClear();
+  } else if (event.key >= "a" && event.key <= "z") {
+    console.log(event.key, event.code);
+    alert("no alphabets !!!");
+  } else {
+    console.log(event.key);
+  }
+
+  console.log("***********finish key event ********");
+}
 
 /***********for Numbers and dot . ****** ****/
 function onClickNumber(number) {
@@ -67,7 +105,7 @@ function onClickEquals() {
   operator = stack.pop();
   operand1 = stack.pop();
   console.log(
-    "equals - >",
+    "entered equals - >",
     operand1,
     operator,
     operand2,
@@ -76,11 +114,15 @@ function onClickEquals() {
   );
   answer = evaluate(operand1, operator, operand2);
   stack.push(answer);
+  console.log("equals -> exp->answer", answer, stack.join());
   query.innerText = operand1 + operator + operand2;
+  console.log("query is =", query.innerText);
   result.value = answer;
+  console.log(result.value);
 }
 
 function evaluate(operand1, operator, operand2) {
+  console.log(operand1, operand2, operator);
   switch (operator) {
     case "+":
       return +operand1 + +operand2;
@@ -96,6 +138,12 @@ function evaluate(operand1, operator, operand2) {
 /********************************************************** */
 
 /*****Adding event listeners to number buttons ************ */
+clear.addEventListener("click", onClickClear);
+
+backspace.addEventListener("click", onClickBackspace);
+
+container.addEventListener("keydown", onKeyPressed);
+
 one.addEventListener("click", () => onClickNumber("1"));
 
 three.addEventListener("click", () => onClickNumber("3"));

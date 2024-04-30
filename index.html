@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container">
+    <div class="container" id="container" tabindex="0">
       <h1 id="title" class="pt-2 px-4 text-success">Calculator</h1>
       <p id="description" class="ps-4 text-primary text-muted">
         This is a basic calculator.
@@ -29,7 +29,13 @@
         <label tabindex="-1" id="query"> &nbsp;</label>
       </div>
       <div class="row p-2">
-        <input class="form-control" type="text" id="result" placeholder="0" />
+        <input
+          readonly
+          class="form-control"
+          type="text"
+          id="result"
+          placeholder="0"
+        />
       </div>
       <div class="row">
         <div class="col"><button id="clear">C</button></div>
