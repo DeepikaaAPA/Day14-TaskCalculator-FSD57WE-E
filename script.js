@@ -22,6 +22,7 @@ let add = document.getElementById("add");
 let subtract = document.getElementById("subtract");
 let multiply = document.getElementById("multiply");
 let divide = document.getElementById("divide");
+const modulo = document.getElementById("modulo");
 let equal = document.getElementById("equal");
 
 let query = document.getElementById("query");
@@ -51,7 +52,7 @@ function onClickBackspace() {
 }
 
 function isOperator(key) {
-  return key == "+" || key == "-" || key == "*" || key == "/";
+  return key == "+" || key == "-" || key == "*" || key == "/" || key == "%";
 }
 function onKeyPressed(event) {
   event.preventDefault();
@@ -63,18 +64,17 @@ function onKeyPressed(event) {
     onClickOperator(event.key);
   } else if (event.key === "Enter") {
     onClickEquals();
-    console.log(
-      "return form equals",
-      result.value,
-      query.innerText,
-      stack.join("")
-    );
+    // console.log(
+    //   "return form equals",
+    //   result.value,
+    //   query.innerText,
+    //   stack.join("")
+    // );
   } else if (event.key === "Backspace") {
     onClickBackspace();
   } else if (event.key === "Escape") {
     onClickClear();
   } else if (event.key >= "a" && event.key <= "z") {
-    console.log(event.key, event.code);
     alert("no alphabets !!!");
   } else {
     console.log(event.key);
@@ -86,18 +86,19 @@ function onKeyPressed(event) {
 /***********for Numbers and dot . ****** ****/
 function onClickNumber(number) {
   result.value += number;
-  console.log("number", result.value);
+  //  console.log("number", result.value);
 }
 
 /**********for operators********************/
 function onClickOperator(symbol) {
-  console.log("operator", result.value);
-
-  stack.push(result.value, symbol);
-
-  query.innerText = stack.join("");
-  console.log(...stack, "query = ", query.innerText);
+  console.log("operator enter ->", ...stack);
+  if (isOperator(stack[stack.length - 1])) {
+    stack.pop();
+  } else stack.push(result.value);
+  stack.push(symbol);
+  query.innerText = stack[stack.length - 2] + symbol;
   result.value = "";
+  console.log("operresult.value ator end ->", ...stack);
 }
 
 /************for Equals button ************/
@@ -106,21 +107,10 @@ function onClickEquals() {
   operand2 = result.value;
   operator = stack.pop();
   operand1 = stack.pop();
-  console.log(
-    "entered equals - >",
-    operand1,
-    operator,
-    operand2,
-    "    stack=>",
-    ...stack
-  );
   answer = evaluate(operand1, operator, operand2);
   stack.push(answer);
-  console.log("equals -> exp->answer", answer, stack.join());
   query.innerText = operand1 + operator + operand2;
-  console.log("query is =", query.innerText);
   result.value = answer;
-  console.log(result.value);
 }
 
 function evaluate(operand1, operator, operand2) {
@@ -134,6 +124,8 @@ function evaluate(operand1, operator, operand2) {
       return +operand1 * +operand2;
     case "/":
       return +operand1 / +operand2;
+    case "%":
+      return +operand1 % +operand2;
   }
 }
 
@@ -179,3 +171,4 @@ subtract.addEventListener("click", () => onClickOperator("-"));
 multiply.addEventListener("click", () => onClickOperator("*"));
 divide.addEventListener("click", () => onClickOperator("/"));
 equal.addEventListener("click", onClickEquals);
+modulo.addEventListener("click", () => onClickOperator("%"));
