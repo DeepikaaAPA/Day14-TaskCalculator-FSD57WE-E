@@ -1,3 +1,80 @@
+let e = `<div class="flex">
+<div class="container" id="container" tabindex="0">
+  <h1 id="title" class="pt-2 px-4 text-success">Calculator</h1>
+  <p id="description" class="ps-4 text-primary text-muted">
+    This is a basic calculator.
+  </p>
+  <div class="row">
+    <label tabindex="-1" id="query"> &nbsp;</label>
+  </div>
+  <div class="row p-2">
+    <input
+      tabindex="-1"
+      readonly
+      class="form-control"
+      type="text"
+      id="result"
+      value="0"
+    />
+  </div>
+  <div class="row">
+    <div class="col"><button tabindex="-1" id="clear">C</button></div>
+    <div class="col">
+      <button tabindex="-1" id="backspace">
+        <i class="fas fa-backspace"></i>
+      </button>
+    </div>
+    <div class="col"><button tabindex="-1" id="dot">.</button></div>
+    <div class="col">
+      <button tabindex="-1" id="multiply" class="operator">*</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col"><button tabindex="-1" id="seven">7</button></div>
+    <div class="col">
+      <button tabindex="-1" id="eight">8</button>
+    </div>
+    <div class="col"><button tabindex="-1" id="nine">9</button></div>
+    <div class="col">
+      <button tabindex="-1" id="divide" class="operator">÷</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col"><button tabindex="-1" id="four">4</button></div>
+    <div class="col">
+      <button tabindex="-1" id="five">5</button>
+    </div>
+    <div class="col"><button tabindex="-1" id="six">6</button></div>
+    <div class="col">
+      <button tabindex="-1" id="subtract" class="operator">-</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col"><button tabindex="-1" id="1">1</button></div>
+    <div class="col">
+      <button tabindex="-1" id="2">2</button>
+    </div>
+    <div class="col"><button tabindex="-1" id="3">3</button></div>
+    <div class="col">
+      <button tabindex="-1" id="add" class="operator">+</button>
+    </div>
+  </div>
+  <div class="row pb-3">
+    <div class="col"><button tabindex="-1" id="zero">0</button></div>
+    <div class="col">
+      <button tabindex="-1" id="double0">00</button>
+    </div>
+
+    <div class="col"><button tabindex="-1" id="equal">=</button></div>
+    <div class="col">
+      <button tabindex="-1" id="modulo" class="operator">%</button>
+    </div>
+  </div>
+</div>
+</div>`;
+
+document.body.innerHTML = e;
+
 let clear = document.getElementById("clear");
 
 let backspace = document.getElementById("backspace");
@@ -99,7 +176,7 @@ function onClickOperator(symbol) {
   // } else {
   stack.push(result.value);
   console.log("stack = >", stack);
-  //}
+
   onClickEquals(false);
   console.log("stack = >", stack);
   stack.push(symbol);
@@ -123,7 +200,7 @@ function onClickEquals(flag) {
   answer = evaluate(operand1, operator, operand2);
   stack.push(answer);
   if (flag) {
-    query.innerText = operand1 + operator + operand2;
+    query.innerText = stack.join("");
     result.value = answer;
   }
 }
