@@ -14,7 +14,14 @@ button {
   justify-content: center;
   height: 100vh;
 }
-
+#MemoryLabel {
+  padding: 5px;
+  margin-left: 20px;
+  border-radius: 10px;
+  background-color: rgb(222, 130, 242);
+  color: rgb(121, 119, 119);
+  font-size:small;
+}
 button:hover {
   background-color: rgb(230, 225, 230);
 }
@@ -30,6 +37,12 @@ button:hover {
   font-size: xx-large;
   font-weight: 500;
   background-color: rgb(150, 223, 108);
+}
+.memory {
+  background-color: rgb(222, 130, 242);
+}
+.memory:hover {
+  background-color: rgb(212, 86, 240);
 }
 
 .operator:hover {
@@ -65,7 +78,7 @@ button:hover {
   border: solid 2px lightgray;
   border-radius: 15px;
   background-color: rgb(173, 225, 245);
-  box-shadow: 15px -5px 15px 0px #bbcae3;
+  box-shadow: 5px -5px 5px 0px #767677;
 }
 input {
   padding: 5px;
@@ -75,6 +88,6 @@ input {
 .row {
   margin: 10px;
 }
-body{
+body {
   background-color: rgb(25, 10, 82);
 }

@@ -1,13 +1,14 @@
 let e = `<div class="flex">
 <div class="container" id="container" tabindex="0">
   <h1 id="title" class="pt-2 px-4 text-success">Calculator</h1>
-  <p id="description" class="ps-4 text-primary text-muted">
+  <p id="description" class="ps-4 m-0 text-primary text-muted">
     This is a basic calculator.
   </p>
-  <div class="row">
-    <label tabindex="-1" id="query"> &nbsp;</label>
+  <div class="row m-0 p-0">
+  <label id="MemoryLabel" class="border col-4 ">Memory :<label id="memory"> </label></label>
+    <label class="col-7" tabindex="-1" id="query"> &nbsp;</label>
   </div>
-  <div class="row p-2">
+  <div class="row px-2">
     <input
       tabindex="-1"
       readonly
@@ -17,6 +18,17 @@ let e = `<div class="flex">
       value="0"
     />
   </div>
+  <div class="row">
+  <div class="col">
+  <button class="memory" id="MS">MS</button>
+  </div>
+  <div class="col">
+  <button class="memory" id="MR">MR</button>
+  </div>
+  <div class="col">
+  <button class="memory" id="MC">MC</button>
+  </div>
+</div>
   <div class="row">
     <div class="col"><button tabindex="-1" id="clear">C</button></div>
     <div class="col">
@@ -67,7 +79,7 @@ let e = `<div class="flex">
 
     <div class="col"><button tabindex="-1" id="equal">=</button></div>
     <div class="col">
-      <button tabindex="-1" id="modulo" class="operator">%</button>
+      <button tabindex="-1" id="modulo" class="operator" >%</button>
     </div>
   </div>
 </div>
@@ -101,6 +113,10 @@ let multiply = document.getElementById("multiply");
 let divide = document.getElementById("divide");
 const modulo = document.getElementById("modulo");
 let equal = document.getElementById("equal");
+
+let ms = document.getElementById("MS");
+let mr = document.getElementById("MR");
+let mc = document.getElementById("MC");
 
 let query = document.getElementById("query");
 let result = document.getElementById("result");
@@ -156,8 +172,9 @@ function onKeyPressed(event) {
 
 /***********for Numbers and dot . ****** ****/
 function onClickNumber(number) {
+  //console.log("event",event);
   result.value += number;
-  //  console.log("number", result.value);
+  console.log("number", number);
 }
 
 /**********for operators********************/
@@ -222,6 +239,19 @@ function evaluate(operand1, operator, operand2) {
   }
 }
 
+/*Memory save & retrieve */
+function onClickMS() {
+  sessionStorage.setItem("m", result.value);
+  document.getElementById("memory").innerText = sessionStorage.getItem("m");
+}
+
+function onClickMR() {
+  result.value = sessionStorage.getItem("m");
+}
+function onClickMC() {
+  sessionStorage.clear();
+  document.getElementById("memory").innerText = sessionStorage.getItem("m");
+}
 /********************************************************** */
 
 /*****Adding event listeners to number buttons ************ */
@@ -254,6 +284,10 @@ zero.addEventListener("click", () => onClickNumber("0"));
 double0.addEventListener("click", () => onClickNumber("00"));
 
 dot.addEventListener("click", () => onClickNumber("."));
+
+ms.addEventListener("click", onClickMS);
+mr.addEventListener("click", onClickMR);
+mc.addEventListener("click", onClickMC);
 
 /************************************************************ */
 
