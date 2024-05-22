@@ -217,7 +217,7 @@ function onClickEquals(flag) {
   answer = evaluate(operand1, operator, operand2);
   stack.push(answer);
   if (flag) {
-    query.innerText = stack.join("");
+    query.innerText = [operand1, operator, operand2].join("");
     result.value = answer;
   }
 }
